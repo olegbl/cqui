@@ -1003,6 +1003,11 @@ function OnCityBannerClick( playerID:number, cityID:number )
 
 	if (pPlayer:GetID() == localPlayerID) then
 		UI.SelectCity( pCity );
+		LuaEvents.CityPanel_ProductionOpen();
+		UI.SetInterfaceMode(InterfaceModeTypes.CITY_MANAGEMENT);
+		LuaEvents.CityPanel_ShowOverviewPanel(true);
+		UILens.ToggleLayerOn(LensLayers.PURCHASE_PLOT);
+		UILens.ToggleLayerOn(LensLayers.CITIZEN_MANAGEMENT);
 	elseif(localPlayerID == PlayerTypes.OBSERVER 
 			or localPlayerID == PlayerTypes.NONE 
 			or pPlayer:GetDiplomacy():HasMet(localPlayerID)) then

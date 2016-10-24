@@ -524,7 +524,9 @@ function OnCitySelectionChanged( ownerPlayerID:number, cityID:number, i:number, 
 			-- Determine if we should switch to the SELECTION interface mode
 			local shouldSwitchToSelection:boolean = true;
 			if UI.GetInterfaceMode() == InterfaceModeTypes.CITY_MANAGEMENT then
-				shouldSwitchToSelection = false;
+				Close();
+				-- Tell the CityPanelOverview a city was deselected
+				LuaEvents.CityPanel_LiveCityDataChanged( nil, false ); 
 			end
 			if UI.GetInterfaceMode() == InterfaceModeTypes.ICBM_STRIKE then
 				-- During ICBM_STRIKE only switch to SELECTION if we're selecting a city
@@ -540,7 +542,7 @@ function OnCitySelectionChanged( ownerPlayerID:number, cityID:number, i:number, 
 				end
 			end
 			if shouldSwitchToSelection then
-				UI.SetInterfaceMode(InterfaceModeTypes.SELECTION);
+				
 			end
 
 			OnToggleOverviewPanel();
